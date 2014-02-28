@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-#^syntax detection
- 
+
 Vagrant.configure("2") do |config|
   config.vm.box = "raringringtail"
   config.vm.box_url = "http://goo.gl/Y4aRr"
@@ -15,8 +14,9 @@ Vagrant.configure("2") do |config|
       vm.customize ["modifyvm", :id, '--nictype1','virtio']
   end
 
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
-  config.vm.network :forwarded_port, guest: 5432, host: 55432
+  config.vm.network :forwarded_port, guest: 80, host: 8888
+  config.vm.network :forwarded_port, guest: 8228, host: 8228
+  config.vm.network :forwarded_port, guest: 4000, host: 4000
 
   config.vm.synced_folder "app", "/home/vagrant/app", :create => true
 
@@ -24,29 +24,19 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path = ["cookbooks"]
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
-    chef.add_recipe "rvm::vagrant"
-    chef.add_recipe "rvm::system"
     chef.add_recipe "git"
-    chef.add_recipe "nodejs"
-    chef.add_recipe "postgresql::server"
+    chef.add_recipe "nvm"
+    chef.add_recipe "mongodb::10gen_repo"
+    chef.add_recipe "mongodb::default"
 
     chef.json.merge!({
-      :rvm => {
-        :default_ruby => 'ruby-2.0.0',
-        :global_gems => [
-          { "name" => "bundler" },
-          { "name" => "rails" }
-        ]
-      },
-      :postgresql => {
-        :listen_addresses => "*",
-        :password => {
-          :postgres => "vagrant"
-        }
-      },
+      :nvm => {
+        :user => "vagrant",
+        :group => "vagrant",
+        :node_versions => ["0.10.24"],
+        :default_node_version => "0.10.24"
+      }
     })
 
   end
 end
-
-#
