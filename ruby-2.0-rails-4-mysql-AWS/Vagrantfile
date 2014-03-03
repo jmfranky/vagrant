@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#^syntax detection
+
+Vagrant.require_plugin "vagrant-aws"
+Vagrant.require_plugin "vagrant-omnibus"
+
+Vagrant.configure("2") do |config|
+  config.vm.hostname = "APPNAME"
+  config.omnibus.chef_version = "11.4.0"
+
+  config.vm.provider :virtualbox do | vm |
+      config.vm.box = "raringringtail"
+      config.vm.box_url = "http://goo.gl/Y4aRr"
+
+      vm.customize ["modifyvm", :id, "--memory", 1536]
+      vm.customize ["modifyvm", :id, "--cpus", "2"]
+      vm.customize ["modifyvm", :id, "--ioapic", "on"]
+      vm.customize ["modifyvm", :id, '--nictype1','virtio']
+  end
+
+  config.vm.provider :aws do |aws, override|
+    config.vm.box = "dummy"
+
+    aws.access_key_id = "access_key_id"
+    aws.secret_access_key = "secret_access_key"
+    aws.keypair_name = "vagrant"
+    aws.region = "us-east-1"
+    aws.ami = "ami-35dbde5c"
+    aws.instance_type = "t1.micro"
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = "~/.ssh/vagrant.pem"
+  end
+
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 3306, host: 3307
+
+  config.vm.synced_folder "app", "/home/vagrant/app", :create => true
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = ["cookbooks"]
+    chef.add_recipe "apt"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "rvm::system"
+    chef.add_recipe "git"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "mysql::server"
+
+    chef.json.merge!({
+      :rvm => {
+        :default_ruby => 'ruby-2.0.0',
+        :global_gems => [
+          { "name" => "bundler" },
+          { "name" => "rails" }
+        ]
+      },
+      :mysql => {
+        :server_root_password => "vagrant",
+        :server_repl_password => "vagrant",
+        :server_debian_password => "vagrant",
+        :allow_remote_root => true
+      }
+    })
+
+  end
+end
