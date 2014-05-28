@@ -16,7 +16,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.network :forwarded_port, guest: 3000, host: 3000
-  config.vm.network :forwarded_port, guest: 3306, host: 3307
 
   config.vm.synced_folder "app", "/home/vagrant/app", :create => true
 
@@ -28,22 +27,15 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "rvm::system"
     chef.add_recipe "git"
     chef.add_recipe "nodejs"
-    chef.add_recipe "mysql::server"
 
     chef.json.merge!({
       :rvm => {
-        :default_ruby => 'ruby-2.0.0',
+        :default_ruby => 'ruby-2.1.2',
         :global_gems => [
           { "name" => "bundler" },
           { "name" => "rails" }
         ]
       },
-      :mysql => {
-        :server_root_password => "vagrant",
-        :server_repl_password => "vagrant",
-        :server_debian_password => "vagrant",
-        :allow_remote_root => true
-      }
     })
 
   end
