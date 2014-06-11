@@ -8,10 +8,11 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "APPNAME"
 
   config.vm.provider :virtualbox do | vm |
-      vm.customize ["modifyvm", :id, "--memory", 1536]
-      vm.customize ["modifyvm", :id, "--cpus", "2"]
-      vm.customize ["modifyvm", :id, "--ioapic", "on"]
-      vm.customize ["modifyvm", :id, '--nictype1','virtio']
+    vm.customize ["modifyvm", :id, "--memory", 1536]
+    vm.customize ["modifyvm", :id, "--cpus", "2"]
+    vm.customize ["modifyvm", :id, "--ioapic", "on"]
+    vm.customize ["modifyvm", :id, '--nictype1','virtio']
+    vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
   config.vm.network :forwarded_port, guest: 80, host: 8888
