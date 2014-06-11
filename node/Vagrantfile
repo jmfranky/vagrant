@@ -3,8 +3,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "raringringtail"
-  config.vm.box_url = "http://goo.gl/Y4aRr"
+  config.vm.box = "mullen/vagrant-trusty64"
   config.vm.hostname = "APPNAME"
 
   config.vm.provider :virtualbox do | vm |

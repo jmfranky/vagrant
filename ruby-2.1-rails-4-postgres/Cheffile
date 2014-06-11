@@ -9,7 +9,7 @@ cookbook 'apt'
 cookbook 'build-essential'
 cookbook 'nodejs'
 
-cookbook 'rvm', :git => 'git://github.com/fnichol/chef-rvm.git'
+cookbook 'rvm'
 
 cookbook 'git', :git => 'https://github.com/fnichol/chef-git.git'
 
