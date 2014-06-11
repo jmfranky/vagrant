@@ -35,9 +35,8 @@ How
 5. Clone this repo & choose a setup
 6. Run
 
-
-```Shell
-librarian-chef install
-vagrant up
-vagrant ssh
-```
+  ```Shell
+  librarian-chef install
+  vagrant up
+  vagrant ssh
+  ```
