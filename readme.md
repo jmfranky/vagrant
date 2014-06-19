@@ -14,11 +14,6 @@ Prerequisites
 How
 ===
 1. Install [Vagrant](http://vagrantup.com/)
-
-  ```Shell
-  gem install vagrant
-  ```
-
 2. Download and Install [VirtualBox](http://www.virtualbox.org/)
 3. Install Chef
 
