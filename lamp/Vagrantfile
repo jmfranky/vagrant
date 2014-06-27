@@ -4,7 +4,7 @@
 #^syntax detection
  
 Vagrant.configure("2") do |config|
-  config.vm.box = "mullen/vagrant-trusty64"
+  config.vm.box = "foodchain/precise64"
   config.vm.hostname = "APPNAME"
 
   config.vm.provider :virtualbox do | vm |
@@ -33,6 +33,8 @@ Vagrant.configure("2") do |config|
 
     chef.json.merge!({
       :apache2 => {
+#         :pid_file => '/var/run/apache2/apache2.pid',
+#         :version => '2.4',
         :default_site_enabled => true
       },
       :mysql => {
