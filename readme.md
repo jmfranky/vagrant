@@ -9,12 +9,10 @@ Prerequisites
 * RVM
 * Brew
 
-*Not in any particular order*
-
 How
 ===
-1. Install [Vagrant](http://vagrantup.com/)
-2. Download and Install [VirtualBox](http://www.virtualbox.org/)
+1. Download and Install [VirtualBox](http://www.virtualbox.org/)
+2. Install [Vagrant](http://vagrantup.com/)
 3. Install Chef
 
   ```Shell
