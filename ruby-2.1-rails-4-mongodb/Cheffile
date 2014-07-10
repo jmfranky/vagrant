@@ -8,9 +8,6 @@ site 'http://community.opscode.com/api/v1'
 cookbook 'apt'
 cookbook 'build-essential'
 cookbook 'nodejs'
-
 cookbook 'rvm'
-
 cookbook 'git', :git => 'https://github.com/fnichol/chef-git.git'
-
 cookbook 'mongodb', :git => 'https://github.com/edelight/chef-mongodb.git'
