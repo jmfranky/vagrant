@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#^syntax detection
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "mullen/centos7-64"
+  config.vm.hostname = "APPNAME"
+
+  config.vm.provider :virtualbox do | vm |
+    vm.customize ["modifyvm", :id, "--memory", 1536]
+    vm.customize ["modifyvm", :id, "--cpus", "2"]
+    vm.customize ["modifyvm", :id, "--ioapic", "on"]
+    vm.customize ["modifyvm", :id, '--nictype1','virtio']
+    vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 3306, host: 3307
+
+  config.vm.synced_folder "app", "/var/www/html", :create => true
+
+  config.vm.provision :chef_solo do |chef|
+    chef.custom_config_path = "Vagrantfile.chef"
+    chef.cookbooks_path = ["cookbooks"]
+    chef.add_recipe "yum"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "apache2"
+    chef.add_recipe "php"
+    chef.add_recipe "mysql::server"
+    chef.add_recipe "apache2::mod_php5"
+    chef.add_recipe "apache2::mod_rewrite"
+    chef.add_recipe "php::module_curl"
+    chef.add_recipe "php::module_mysql"
+
+    chef.json.merge!({
+      :mysql => {
+        :server_root_password => "vagrant",
+        :server_repl_password => "vagrant",
+        :server_debian_password => "vagrant",
+        :allow_remote_root => true
+      }
+    })
+  end
+
+
+  # config.vm.provision :shell, :inline => "rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm"
+  # config.vm.provision :shell, :inline => "rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm"
+  # config.vm.provision :shell, :inline => "yum install php55w php55w-opcache"
+  # config.vm.provision :shell, :inline => "yum install yum-plugin-replace"
+  # config.vm.provision :shell, :inline => "yum replace php-common --replace-with=php55w-common"
+  config.vm.provision :shell, :inline => "sudo systemctl mask firewalld"
+  config.vm.provision :shell, :inline => "sudo systemctl stop firewalld"
+  config.vm.provision :shell, :inline => "sudo a2ensite default"
+  config.vm.provision :shell, :inline => "sudo service httpd restart"
+  # config.vm.provision :shell, :inline => "sudo chown -R vagrant:vagrant /var/www/html"
+  # config.vm.provision :shell, :inline => "sudo chmod 777 /var/www/html"
+# config.vm.provision :shell, :inline => "sudo a2ensite default"
+  # config.vm.provision :shell, :inline => "sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride all/' /etc/httpd/sites-available/default"
+  # config.vm.provision :shell, :inline => "sudo service httpd restart"
+end
