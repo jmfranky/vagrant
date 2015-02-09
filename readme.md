@@ -17,13 +17,13 @@ How
 2. Download and Install [Vagrant](http://vagrantup.com/)
 3. Install the Chef gem
 
-  ```Shell
+  ```shell
   gem install chef
   ```
 
 4. Install the Librarian gem
 
-  ```Shell
+  ```shell
   gem install librarian-chef
   ```
 
@@ -31,7 +31,7 @@ How
 6. Configure & customize any settings in the Vagrantfile 
 7. Run
 
-  ```Shell
+  ```shell
   librarian-chef install
   vagrant up
   vagrant ssh
