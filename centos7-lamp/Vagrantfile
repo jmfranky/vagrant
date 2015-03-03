@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => "sudo systemctl stop firewalld"
   config.vm.provision :shell, :inline => "sudo rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm"
   config.vm.provision :shell, :inline => "sudo rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm"
-  config.vm.provision :shell, :inline => "sudo yum install php55w php55w-opcache -y"
+  config.vm.provision :shell, :inline => "sudo yum install php55w php55w-opcache -y --skip-broken"
   config.vm.provision :shell, :inline => "sudo yum install yum-plugin-replace -y"
   config.vm.provision :shell, :inline => "sudo yum replace php-common --replace-with=php55w-common -y"
   config.vm.provision :shell, :inline => "sudo a2ensite default"
