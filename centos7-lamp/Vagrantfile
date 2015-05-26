@@ -51,7 +51,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => "sudo yum install php55w php55w-opcache -y --skip-broken"
   config.vm.provision :shell, :inline => "sudo yum install yum-plugin-replace -y"
   config.vm.provision :shell, :inline => "sudo yum replace php-common --replace-with=php55w-common -y"
+  config.vm.provision :shell, :inline => "sudo rm /etc/httpd/sites-available/default.conf &> /dev/null"
+  config.vm.provision :shell, :inline => "sudo printf \"NameVirtualHost *\n<VirtualHost *:80>\nDocumentRoot /var/www/html\n<Directory \"/var/www/html\">\nOptions FollowSymLinks\nAllowOverride ALL\n</Directory>\n</VirtualHost>\" > /etc/httpd/sites-available/default.conf"
   config.vm.provision :shell, :inline => "sudo a2ensite default"
-  config.vm.provision :shell, :inline => "sudo sed -i '/AllowOverride None/c AllowOverride All' /etc/httpd/sites-available/default.conf"
   config.vm.provision :shell, :inline => "sudo service httpd restart"
 end
