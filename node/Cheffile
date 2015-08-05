@@ -7,6 +7,6 @@ site 'http://community.opscode.com/api/v1'
 
 cookbook 'apt'
 cookbook 'build-essential'
-cookbook 'nvm', :git => 'https://github.com/HuzuTech/chef-nvm'
+cookbook 'nodejs'
 cookbook 'git', :git => 'https://github.com/fnichol/chef-git.git'
 cookbook 'mongodb', :git => 'https://github.com/edelight/chef-mongodb.git'
