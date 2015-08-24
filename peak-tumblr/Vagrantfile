@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
     vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
-  config.vm.network :forwarded_port, guest: 1111, host: 7000
+  config.vm.network :forwarded_port, guest: 1111, host: 1111
 
   config.vm.synced_folder "app", "/home/vagrant/app", :create => true
 
