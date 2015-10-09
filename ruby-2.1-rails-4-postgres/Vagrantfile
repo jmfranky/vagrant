@@ -41,6 +41,7 @@ Vagrant.configure("2") do |config|
         ]
       },
       :postgresql => {
+        :version => "9.4",
         :config   => {
           :listen_addresses => "*",
           :port             => "5432"
