@@ -1,5 +1,16 @@
 ![vagrant](https://camo.githubusercontent.com/51b172d944dd3848632774f14a6c02a6feae467b/687474703a2f2f6572696b6168656964692e636f6d2f7468656d652f6661746361747a2f696d616765732f76616772616e742f6c6f676f5f76616772616e742e706e67)
 
+Updates 2016-01-10
+===
+* Converted all boxes to use modern ruby syntax
+* All boxes now use CentOS 7
+* Boxes using MySQL have been switched to MariaDB
+* Removed redundant boxes
+* LAMP box now includes Node.js, Grunt, and SCSS
+* Removed unnecessary  git dependancies from Cheffiles
+* Standardized syntax across all boxes
+
+
 What
 ====
 Vagrant/Chef configurations
@@ -28,7 +39,7 @@ How
   ```
 
 5. Clone this repo & choose a setup
-6. Configure & customize any settings in the Vagrantfile 
+6. Configure & customize any settings in the Vagrantfile
 7. Run
 
   ```shell
