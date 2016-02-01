@@ -4,14 +4,14 @@
 #^syntax detection
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "mullen/centos7-64"
+  config.vm.box = "mullen/vagrant-trusty64"
   config.vm.hostname = "APPNAME"
 
   config.vm.provider :virtualbox do | vm |
     vm.customize ["modifyvm", :id, "--memory", 1536]
     vm.customize ["modifyvm", :id, "--cpus", "2"]
     vm.customize ["modifyvm", :id, "--ioapic", "on"]
-    vm.customize ["modifyvm", :id, "--nictype1","virtio"]
+    vm.customize ["modifyvm", :id, "--nictype1", "virtio"]
     vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
 
     chef.json.merge!({
       rvm: {
-        default_ruby: "ruby-2.3.0",
+        default_ruby: "ruby-2.2.1",
         global_gems: [
           { name: "bundler" },
           { name: "rails" }
@@ -73,11 +73,6 @@ Vagrant.configure("2") do |config|
         }
       }
     })
-
   end
-  config.vm.provision "shell", inline: <<-SHELL
-    sudo systemctl mask firewalld
-    sudo systemctl stop firewalld
-    sudo -u postgres createuser -s vagrant
-  SHELL
+  config.vm.provision :shell, inline: "sudo -u postgres createuser -s vagrant"
 end
