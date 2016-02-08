@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#^syntax detection
+
+site "http://community.opscode.com/api/v1"
+
+cookbook "git"
+cookbook "apt"
+cookbook "build-essential"
+cookbook "postgresql", "~> 3.4.20"
