@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 6379, host: 6379
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
@@ -25,6 +26,11 @@ Vagrant.configure("2") do |config|
       echo "Installing Imagemagick"
       apt-get update  > /dev/null 2>&1
       apt-get install build-essential imagemagick libmagickwand-dev -y > /dev/null 2>&1
+    fi
+
+    if ! type redis-cli > /dev/null; then
+      echo "Installing Redis"
+      apt-get install redis-server -y > /dev/null 2>&1
     fi
 
   SHELL
@@ -46,6 +52,5 @@ Vagrant.configure("2") do |config|
       gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 > /dev/null 2>&1 || command curl -sSL https://rvm.io/mpapis.asc | gpg --import - > /dev/null 2>&1
       curl -sSL https://get.rvm.io | bash -s stable --gems=bundler,rails > /dev/null 2>&1
     fi
-
   SHELL
 end
