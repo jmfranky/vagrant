@@ -24,20 +24,20 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     if ! type convert > /dev/null; then
       echo "Installing Imagemagick"
-      sudo apt-get update  > /dev/null 2>&1
-      sudo apt-get install build-essential imagemagick libmagickwand-dev -y > /dev/null 2>&1
+      apt-get update  > /dev/null 2>&1
+      apt-get install build-essential imagemagick libmagickwand-dev -y > /dev/null 2>&1
     fi
 
     if ! type psql > /dev/null; then
       echo "Installing PosgreSQL"
-      sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+      sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
       wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
-      sudo apt-get update > /dev/null 2>&1
-      sudo apt-get install postgresql postgresql-contrib libpq-dev -y > /dev/null 2>&1
+      apt-get update > /dev/null 2>&1
+      apt-get install postgresql postgresql-contrib libpq-dev -y > /dev/null 2>&1
       sudo -u postgres createuser -s vagrant > /dev/null 2>&1
       echo "host all all 0.0.0.0/0 trust" >> /etc/postgresql/9.5/main/pg_hba.conf
       echo "listen_addresses = '*'" >> /etc/postgresql/9.5/main/postgresql.conf
-      sudo service postgresql restart > /dev/null 2>&1
+      service postgresql restart > /dev/null 2>&1
     fi
   SHELL
 

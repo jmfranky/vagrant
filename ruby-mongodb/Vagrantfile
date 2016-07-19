@@ -4,14 +4,14 @@
 #^syntax detection
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "mullen/centos7-64"
+  config.vm.box = "mullen/vagrant-trusty64"
   config.vm.hostname = "APPNAME"
 
   config.vm.provider :virtualbox do | vm |
     vm.customize ["modifyvm", :id, "--memory", 1536]
     vm.customize ["modifyvm", :id, "--cpus", "2"]
     vm.customize ["modifyvm", :id, "--ioapic", "on"]
-    vm.customize ["modifyvm", :id, "--nictype1","virtio"]
+    vm.customize ["modifyvm", :id, "--nictype1", "virtio"]
     vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
@@ -21,32 +21,41 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
-  config.vm.provision :chef_solo do |chef|
-    chef.custom_config_path = "Vagrantfile.chef"
-    chef.cookbooks_path = ["cookbooks"]
-    chef.add_recipe "apt"
-    chef.add_recipe "build-essential"
-    chef.add_recipe "rvm::vagrant"
-    chef.add_recipe "rvm::system"
-    chef.add_recipe "nodejs"
-    chef.add_recipe "mongodb::10gen_repo"
-    chef.add_recipe "mongodb::default"
-
-    chef.json.merge!({
-      rvm: {
-        default_ruby: "ruby-2.3.0",
-        global_gems: [
-          { name: "bundler" },
-          { name: "rails" }
-        ]
-      },
-    })
-
-  end
 
   config.vm.provision "shell", inline: <<-SHELL
-    sudo systemctl mask firewalld
-    sudo systemctl stop firewalld
+    if ! type convert > /dev/null; then
+      echo "Installing Imagemagick"
+      apt-get update  > /dev/null 2>&1
+      apt-get install build-essential imagemagick libmagickwand-dev -y > /dev/null 2>&1
+    fi
+
+    if ! type mongo > /dev/null; then
+      echo "Installing MongoDB"
+      apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+      echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+      apt-get update > /dev/null 2>&1
+      apt-get install -y mongodb-org > /dev/null 2>&1
+    fi
+
   SHELL
 
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    if ! type node > /dev/null; then
+      echo "Installing Node.js"
+      cd /home/vagrant/app
+      curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash > /dev/null 2>&1
+      echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
+      source /home/vagrant/.profile
+      nvm install 5.0  > /dev/null 2>&1
+      nvm use 5.0  > /dev/null 2>&1
+      nvm alias default 5.0  > /dev/null 2>&1
+    fi
+
+    if ! type rvm > /dev/null; then
+      echo "Installing RVM & Ruby"
+      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 > /dev/null 2>&1 || command curl -sSL https://rvm.io/mpapis.asc | gpg --import - > /dev/null 2>&1
+      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler,rails > /dev/null 2>&1
+    fi
+
+  SHELL
 end
