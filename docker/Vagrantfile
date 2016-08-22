@@ -4,8 +4,9 @@
 #^syntax detection
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "mullen/centos7-64"
+  config.vm.box = "bento/centos-7.2"
   config.vm.hostname = "APPNAME"
+  config.ssh.insert_key = false
 
   config.vm.provider :virtualbox do | vm |
     vm.customize ["modifyvm", :id, "--memory", 1536]
@@ -27,6 +28,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     if ! type docker > /dev/null; then
       yum update -y
+      sudo apt-get install curl
       systemctl mask firewalld
       systemctl stop firewalld
       rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm

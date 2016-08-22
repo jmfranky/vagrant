@@ -4,8 +4,9 @@
 #^syntax detection
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "mullen/centos7-64"
+  config.vm.box = "bento/centos-7.2"
   config.vm.hostname = "APPNAME"
+  config.ssh.insert_key = false
 
   config.vm.provider :virtualbox do | vm |
     vm.customize ["modifyvm", :id, "--memory", 1536]
