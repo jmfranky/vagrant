@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
       rpm -ivh http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm > /dev/null 2>&1
       yum install -y postgresql95 postgresql95-server postgresql95-libs postgresql95-contrib postgresql95-devel postgresql-devel > /dev/null 2>&1
       rm -rf /var/lib/pgsql/9.5/data > /dev/null 2>&1
-      /usr/pgsql-9.5/bin/postgresql95-setup initdb   > /dev/null 2>&1
+      /usr/pgsql-9.5/bin/postgresql95-setup initdb > /dev/null 2>&1
       systemctl start postgresql-9.5 > /dev/null 2>&1
       systemctl enable postgresql-9.5 > /dev/null 2>&1
       chkconfig postgresql-9.5 on > /dev/null 2>&1
@@ -47,18 +47,18 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     hash ruby 2>/dev/null || {
       echo "Installing RVM & Ruby"
-      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3  > /dev/null 2>&1
-      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler  > /dev/null 2>&1
+      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 > /dev/null 2>&1
+      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler > /dev/null 2>&1
     }
     
     hash node 2>/dev/null || {
       echo "Installing Node.js"
-      curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash  > /dev/null 2>&1
+      curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash > /dev/null 2>&1
       echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
       source /home/vagrant/.profile
-      nvm install 5.0  > /dev/null 2>&1
-      nvm use 5.0  > /dev/null 2>&1
-      nvm alias default 5.0  > /dev/null 2>&1
+      nvm install 5.0 > /dev/null 2>&1
+      nvm use 5.0 > /dev/null 2>&1
+      nvm alias default 5.0 > /dev/null 2>&1
     }
   SHELL
 end
