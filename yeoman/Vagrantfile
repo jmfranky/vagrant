@@ -26,13 +26,13 @@ Vagrant.configure("2") do |config|
   SHELL
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    if ! type ruby > /dev/null; then
+    hash rvm 2>/dev/null || {
       echo "Installing RVM & Ruby"
       gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3  > /dev/null 2>&1
       curl -sSL https://get.rvm.io | bash -s stable --gems=bundler,sass,rails,compass  > /dev/null 2>&1
-    fi
+    }
 
-    if ! type node > /dev/null; then
+    hash node 2>/dev/null || {
       echo "Installing Node.js"
       cd /home/vagrant/app
       sudo apt-get install curl -y > /dev/null 2>&1
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       nvm install 5.0  > /dev/null 2>&1
       nvm use 5.0  > /dev/null 2>&1
       nvm alias default 5.0  > /dev/null 2>&1
-    fi
+    }
   SHELL
 
 end

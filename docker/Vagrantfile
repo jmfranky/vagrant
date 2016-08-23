@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
 
   config.vm.provision "shell", inline: <<-SHELL
-    if ! type docker > /dev/null; then
+    hash docker 2>/dev/null || {
       yum update -y
       sudo apt-get install curl
       systemctl mask firewalld
@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
       usermod -aG docker vagrant
       chkconfig docker on
       service docker start
-    fi
+    }
   SHELL
 end
 
