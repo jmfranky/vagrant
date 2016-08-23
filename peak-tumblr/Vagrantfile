@@ -20,15 +20,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
+  config.vm.provision "shell", privileged: false, inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh | bash"
+  
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    hash node 2>/dev/null || {
-      echo "Installing Node.js"
-      curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash > /dev/null 2>&1
-      echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
-      source /home/vagrant/.profile
-      nvm install 5.0 > /dev/null 2>&1
-      nvm use 5.0 > /dev/null 2>&1
-      nvm alias default 5.0 > /dev/null 2>&1
+    hash peak 2>/dev/null || {
       npm install -g peak  > /dev/null 2>&1
     }
   SHELL

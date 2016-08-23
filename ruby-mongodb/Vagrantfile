@@ -22,44 +22,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
-  config.vm.provision "shell", inline: <<-SHELL
-    hash convert 2>/dev/null || {
-      echo "Installing Imagemagick"
-      yum install -y ImageMagick-devel ImageMagick > /dev/null 2>&1
-    }
+  config.vm.provision "shell", inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/firewalld.sh | bash"
+  config.vm.provision "shell", inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/imagemagick.sh | bash"
+  config.vm.provision "shell", inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/mongodb.sh | bash"
+  config.vm.provision "shell", privileged: false, inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/rvm.sh | bash"
+  config.vm.provision "shell", privileged: false, inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh | bash"
 
-    hash mongo 2>/dev/null || {
-      echo "Installing MongoDB"
-      echo '[mongodb-org-3.2]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc' > /etc/yum.repos.d/mongodb-org-3.2.repo
-      yum install -y mongodb-org > /dev/null 2>&1
-      chkconfig mongod on > /dev/null 2>&1
-      if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
-         echo never > /sys/kernel/mm/transparent_hugepage/enabled
-      fi
-      if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
-         echo never > /sys/kernel/mm/transparent_hugepage/defrag
-      fi
-      echo 'mongod     soft    nproc     64000' > /etc/security/limits.d/90-nproc.conf
-      service mongod start > /dev/null 2>&1
-    }
-
-  SHELL
-
-  config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    hash rvm 2>/dev/null || {
-      echo "Installing RVM & Ruby"
-      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 > /dev/null 2>&1
-      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler > /dev/null 2>&1
-    }
-    
-    hash node 2>/dev/null || {
-      echo "Installing Node.js"
-      curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash > /dev/null 2>&1
-      echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
-      source /home/vagrant/.profile
-      nvm install 5.0 > /dev/null 2>&1
-      nvm use 5.0 > /dev/null 2>&1
-      nvm alias default 5.0 > /dev/null 2>&1
-    }
-  SHELL
 end
