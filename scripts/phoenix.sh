@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if ! mix local | grep --quiet "phoenix.new"; then
+  echo "Installing Phoenix"
   cd ~
   yes | mix local.hex > /dev/null 2>&1
   yes | mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez > /dev/null 2>&1

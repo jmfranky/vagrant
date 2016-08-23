@@ -1,6 +1,7 @@
 #!/bin/bash
 
 hash elixir 2>/dev/null || {
+  echo "Installing Exixir"
   cd /usr/bin > /dev/null 2>&1
   sudo mkdir elixir > /dev/null 2>&1
   cd /usr/bin/elixir > /dev/null 2>&1
