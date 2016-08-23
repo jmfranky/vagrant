@@ -3,8 +3,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/centos-7.2"
   config.vm.hostname = "APPNAME"
+  config.ssh.insert_key = false
 
   config.vm.provider :virtualbox do | vm |
     vm.customize ["modifyvm", :id, "--memory", 1536]
@@ -19,30 +20,22 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
-  config.vm.provision "shell", inline: <<-SHELL
-    echo "Updating System"
-    apt-get update  > /dev/null 2>&1
-    apt-get install build-essential  > /dev/null 2>&1
-  SHELL
-
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     hash rvm 2>/dev/null || {
       echo "Installing RVM & Ruby"
-      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3  > /dev/null 2>&1
-      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler,sass,rails,compass  > /dev/null 2>&1
+      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 > /dev/null 2>&1
+      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler,sass,rails,compass > /dev/null 2>&1
     }
 
     hash node 2>/dev/null || {
       echo "Installing Node.js"
-      cd /home/vagrant/app
-      sudo apt-get install curl -y > /dev/null 2>&1
       curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash > /dev/null 2>&1
       echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
       source /home/vagrant/.profile
-      nvm install 5.0  > /dev/null 2>&1
-      nvm use 5.0  > /dev/null 2>&1
-      nvm alias default 5.0  > /dev/null 2>&1
+      nvm install 5.0 > /dev/null 2>&1
+      nvm use 5.0 > /dev/null 2>&1
+      nvm alias default 5.0 > /dev/null 2>&1
+      npm install -g grunt grunt-cli grunt-bower yo bower generator-webapp phantomjs-prebuilt gulp-cli  > /dev/null 2>&1
     }
   SHELL
-
 end

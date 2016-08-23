@@ -21,52 +21,51 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "app", "/var/www/html", create: true
 
-
-
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    hash ruby 2>/dev/null || {
+    hash rvm 2>/dev/null || {
       echo "Installing RVM & Ruby"
       gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3  > /dev/null 2>&1
-      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler,sass,rails,compass  > /dev/null 2>&1
+      curl -sSL https://get.rvm.io | bash -s stable --gems=bundler > /dev/null 2>&1
     }
-  
+    
     hash node 2>/dev/null || {
-      echo "Installing Node.js"
-      curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash  > /dev/null 2>&1
+      echo "Installing NVM & Node.js"
+      curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash > /dev/null 2>&1
       echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
       source /home/vagrant/.profile
-      nvm install 5.0  > /dev/null 2>&1
-      nvm use 5.0  > /dev/null 2>&1
-      nvm alias default 5.0  > /dev/null 2>&1
-      npm install -g grunt grunt-cli grunt-bower yo bower generator-webapp phantomjs-prebuilt gulp-cli  > /dev/null 2>&1
+      nvm install 5.0 > /dev/null 2>&1
+      nvm use 5.0 > /dev/null 2>&1
+      nvm alias default 5.0 > /dev/null 2>&1
     }
   SHELL
 
-
   config.vm.provision "shell", inline: <<-SHELL
-    systemctl mask firewalld
-    systemctl stop firewalld
+    systemctl mask firewalld > /dev/null 2>&1
+    systemctl stop firewalld > /dev/null 2>&1
 
-    yum install httpd mariadb-server mariadb -y
-    
-    systemctl enable mariadb.service
-    systemctl start mariadb.service
-    systemctl enable httpd.service
-    
-    rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
-    rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
-    yum install php55w php55w-opcache -y --skip-broken
-    yum install yum-plugin-replace -y
-    yum replace php-common --replace-with=php55w-common -y
-    yum install php55u-gd php55w-mysql php55w-mbstring -y
-    
-    printf "NameVirtualHost *\n<VirtualHost *:80>\nDocumentRoot /var/www/html\n<Directory \"/var/www/html\">\nOptions FollowSymLinks\nAllowOverride ALL\n</Directory>\n</VirtualHost>" > /etc/httpd/conf.d/welcome.conf
-    sed -i "s/User apache/User vagrant/g" /etc/httpd/conf/httpd.conf
-    sed -i "s/Group apache/Group vagrant/g" /etc/httpd/conf/httpd.conf
-    mysql -uroot -e 'use mysql;UPDATE user SET password=PASSWORD("vagrant") WHERE User="root";GRANT ALL PRIVILEGES ON *.* TO "root"@"%" IDENTIFIED BY "vagrant" WITH GRANT OPTION;FLUSH PRIVILEGES;'    
-    
-    echo "bind-address=0.0.0.0" >> /etc/my.cnf
-    systemctl restart mariadb.service
-    systemctl start httpd.service
+    hash mysql 2>/dev/null || {
+      echo "Installing MySQL"
+      yum install httpd mariadb-server mariadb -y > /dev/null 2>&1
+      systemctl enable mariadb.service > /dev/null 2>&1
+      systemctl start mariadb.service > /dev/null 2>&1
+      mysql -uroot -e 'use mysql;UPDATE user SET password=PASSWORD("vagrant") WHERE User="root";GRANT ALL PRIVILEGES ON *.* TO "root"@"%" IDENTIFIED BY "vagrant" WITH GRANT OPTION;FLUSH PRIVILEGES;' > /dev/null 2>&1
+      echo "bind-address=0.0.0.0" >> /etc/my.cnf > /dev/null 2>&1
+      systemctl restart mariadb.service > /dev/null 2>&1
+    }
+
+    hash node 2>/dev/null || {
+      echo "Installing PHP 5.5"
+      systemctl enable httpd.service > /dev/null 2>&1
+      rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm > /dev/null 2>&1
+      rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm > /dev/null 2>&1
+      yum install php55w php55w-opcache -y --skip-broken > /dev/null 2>&1
+      yum install yum-plugin-replace -y > /dev/null 2>&1
+      yum replace php-common --replace-with=php55w-common -y > /dev/null 2>&1
+      yum install php55u-gd php55w-mysql php55w-mbstring -y > /dev/null 2>&1
+      printf "NameVirtualHost *\n<VirtualHost *:80>\nDocumentRoot /var/www/html\n<Directory \"/var/www/html\">\nOptions FollowSymLinks\nAllowOverride ALL\n</Directory>\n</VirtualHost>" > /etc/httpd/conf.d/welcome.conf > /dev/null 2>&1
+      sed -i "s/User apache/User vagrant/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
+      sed -i "s/Group apache/Group vagrant/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
+      systemctl start httpd.service > /dev/null 2>&1
+    }
   SHELL
 end
