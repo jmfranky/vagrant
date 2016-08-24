@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
-  config.vm.provision "shell", inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/mongodb.sh | bash"
-  config.vm.provision "shell", privileged: false, inline: "curl -fsS https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh | bash"
+  config.vm.provision "shell", path: "https://git.io/v65JW" # Firewalld
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/mongodb.sh"
+  config.vm.provision "shell", privileged: false, path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh"
 end

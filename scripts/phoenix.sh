@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://git.io/v65Uy
+
 if ! mix local | grep --quiet "phoenix.new"; then
   echo "Installing Phoenix"
   cd ~

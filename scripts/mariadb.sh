@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://git.io/v65UV
+
 hash mysql 2>/dev/null || {
   echo "Installing MySQL"
   yum install httpd mariadb-server mariadb -y > /dev/null 2>&1

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://git.io/v65UQ
+
 hash pip 2>/dev/null || {
   echo "Installing Pip"
   rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm > /dev/null 2>&1

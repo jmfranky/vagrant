@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://git.io/v65Uk
+
 hash erl 2>/dev/null || {
   echo "Installing Erlang"
   wget http://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm > /dev/null 2>&1

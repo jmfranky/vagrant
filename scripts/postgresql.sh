@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://git.io/v65UF
+
 hash psql 2>/dev/null || {
   echo "Installing PostgreSQL"
   rpm -ivh http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm > /dev/null 2>&1

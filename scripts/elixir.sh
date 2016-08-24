@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://git.io/v65Uq
+
 hash elixir 2>/dev/null || {
   echo "Installing Exixir"
   cd /usr/bin > /dev/null 2>&1

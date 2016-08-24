@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://git.io/v65U9
+
 hash php 2>/dev/null || {
   echo "Installing PHP 5.5"
   rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm > /dev/null 2>&1
