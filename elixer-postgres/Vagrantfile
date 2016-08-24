@@ -22,8 +22,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", path: "https://git.io/v65JW" # Firewalld
   config.vm.provision "shell", path: "https://git.io/v65UF" # PostgreSQL
-  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/erlang.sh"
-  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/elixir.sh"
-  config.vm.provision "shell", privileged: false, path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/phoenix.sh"
-  config.vm.provision "shell", privileged: false, path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh"
+  config.vm.provision "shell", path: "https://git.io/v65Uk" # Erlang
+  config.vm.provision "shell", path: "https://git.io/v65Uq" # Elixir
+  config.vm.provision "shell", path: "https://git.io/v65Uy", privileged: false # Phoenix
+  config.vm.provision "shell", path: "https://git.io/v65Ui", privileged: false # Node.js
 end
