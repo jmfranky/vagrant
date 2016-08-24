@@ -3,7 +3,6 @@
 # https://git.io/v65UV
 
 hash mysql 2>/dev/null || {
-  echo "Installing MySQL"
   yum install httpd mariadb-server mariadb -y > /dev/null 2>&1
   systemctl enable mariadb.service > /dev/null 2>&1
   systemctl start mariadb.service > /dev/null 2>&1
