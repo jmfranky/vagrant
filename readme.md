@@ -9,7 +9,7 @@ Updates 2016-08-23
 
 Updates 2016-07-19
 ===
-* All boxes now are pure bash and no longer user librarian and chef
+* All boxes now are pure bash and no longer use librarian and chef
 
 Updates 2016-01-10
 ===
