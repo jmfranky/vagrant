@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", path: "https://git.io/v65JW", name: "Firewalld"
   config.vm.provision "shell", path: "https://git.io/v65Ur", name: "MongoDB"
-  config.vm.provision "shell", path: "https://git.io/v65Ui", privileged: false, name: "Node.js"
+  config.vm.provision "shell", path: "https://git.io/v65Ui", name: "Node.js", privileged: false
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     hash grunt 2>/dev/null || {

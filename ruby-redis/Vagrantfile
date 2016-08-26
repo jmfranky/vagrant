@@ -23,6 +23,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://git.io/v65JW", name: "Firewalld"
   config.vm.provision "shell", path: "https://git.io/v65J0", name: "ImageMagick"
   config.vm.provision "shell", path: "https://git.io/v65UA", name: "Redis"
-  config.vm.provision "shell", path: "https://git.io/v65Uj", privileged: false, name: "RVM"
-  config.vm.provision "shell", path: "https://git.io/v65Ui", privileged: false, name: "Node.js"
+  config.vm.provision "shell", path: "https://git.io/v65Uj", name: "RVM", privileged: false
+  config.vm.provision "shell", path: "https://git.io/v65Ui", name: "Node.js", privileged: false
 end
