@@ -11,7 +11,7 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc
 EOF
-  yum install -y mongodb-org > /dev/null 2>&1
+  yum install -y mongodb-org
   chkconfig mongod on > /dev/null 2>&1
   if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
      echo never > /sys/kernel/mm/transparent_hugepage/enabled
