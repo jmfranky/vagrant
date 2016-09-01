@@ -3,7 +3,14 @@
 # https://git.io/v65Ur
 
 hash mongo 2>/dev/null || {
-  echo '[mongodb-org-3.2]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc' > /etc/yum.repos.d/mongodb-org-3.2.repo
+  cat > /etc/yum.repos.d/mongodb-org-3.2.repo <<EOF
+[mongodb-org-3.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc
+EOF
   yum install -y mongodb-org > /dev/null 2>&1
   chkconfig mongod on > /dev/null 2>&1
   if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
