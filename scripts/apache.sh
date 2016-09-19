@@ -17,4 +17,5 @@ EOF
   sed -i "s/User apache/User vagrant/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
   sed -i "s/Group apache/Group vagrant/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
   systemctl start httpd.service > /dev/null 2>&1
+  ln -s /var/www/html /home/vagrant/app > /dev/null 2>&1
 fi
