@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 
+# https://git.io/viDle
 
 hash ffmpeg 2>/dev/null || {
   yum -y install epel-release > /dev/null 2>&1
