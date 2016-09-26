@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 
+# https://git.io/vihTb
 
 hash php 2>/dev/null || {
   rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm  > /dev/null 2>&1
