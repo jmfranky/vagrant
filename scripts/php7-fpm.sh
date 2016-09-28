@@ -14,8 +14,8 @@ hash php 2>/dev/null || {
 
 yum install php70w-fpm -y > /dev/null 2>&1
 
-sudo systemctl start php-fpm > /dev/null 2>&1
-sudo systemctl enable php-fpm > /dev/null 2>&1
+systemctl start php-fpm > /dev/null 2>&1
+systemctl enable php-fpm > /dev/null 2>&1
 
 sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php.ini > /dev/null 2>&1
 
@@ -47,5 +47,7 @@ server {
 }
 EOF
 
-sudo systemctl restart nginx > /dev/null 2>&1
+ln -s /var/www/html/ /home/vagrant/app
+
+systemctl restart nginx > /dev/null 2>&1
 
