@@ -1,4 +1,6 @@
+#!/bin/bash
 
+# https://git.io/vPf1b
 
 hash nginx 2>/dev/null || {
   echo "Nginx is required"
