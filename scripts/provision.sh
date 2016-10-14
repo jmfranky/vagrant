@@ -41,7 +41,7 @@ dialog --clear --title " Vagrant Provisioner " --clear --yesno "Would you like t
 case $? in
   0)
     clear
-    vagrant up
+    vagrant up | dialog --title " Building " --progressbox 40 80
     ;;
   1)
     clear
