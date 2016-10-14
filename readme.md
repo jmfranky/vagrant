@@ -25,7 +25,7 @@ $ brew cask install vagrant
 Run the Vagrant provisioning script.
 
 ```shell
-curl -sL https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/provision.sh | bash
+curl -sL https://git.io/vPK0g | bash
 ```
 
 ===
