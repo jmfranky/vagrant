@@ -35,7 +35,7 @@ fi
 choice=$(( ${choice#0} - 1 ))
 rm /tmp/.vagrantprovisioner
 
-wget ${scripts[$choice]}
+wget ${scripts[$choice]} > /dev/null 2>&1
 
 dialog --clear --title " Vagrant Provisioner " --clear --yesno "Would you like to boot Vagrant now?" 10 30 2> /tmp/.vagrantprovisioner
 case $? in
