@@ -23,5 +23,4 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://git.io/v65JW", name: "Firewalld"
   config.vm.provision "shell", path: "https://git.io/v65UV", name: "MariaDB"
   config.vm.provision "shell", path: "https://git.io/v65UQ", name: "PIP"
-  config.vm.provision "shell", path: "https://git.io/v1zOG", name: "VirtualEnv", privileged: false
 end
