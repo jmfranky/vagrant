@@ -8,7 +8,7 @@ hash pip 2>/dev/null || {
   yum install -y python-pip MySQL-python libpng-devel git mysql gcc-c++ mailcap automake mysql-devel python-devel libpng-devel libcurl-devel libxml2-devel openssl-devel libstdc++-devel > /dev/null 2>&1
   pip install --upgrade pip > /dev/null 2>&1
   pip install virtualenv > /dev/null 2>&1
-  if test -f "/home/vagrant/app/requirements.txt"; then
-    pip install -r /home/vagrant/app/requirements.txt > /dev/null 2>&1
-  fi
+  virtualenv --python $(which python2.7) ~/.virtualenvs/app > /dev/null 2>&1
+  wget -O /home/vagrant/venv https://raw.githubusercontent.com/SteveMcGrath/virtualenv_manager/master/venv.sh > /dev/null 2>&1
+  chmod +x /home/vagrant/venv > /dev/null 2>&1
 }
