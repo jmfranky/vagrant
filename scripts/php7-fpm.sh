@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://git.io/vPf1b
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/php7-fpm.sh
 
 hash nginx 2>/dev/null || {
   echo "Nginx is required"

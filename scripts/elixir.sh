@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://git.io/v65Uq
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/elixir.sh
 
 hash elixir 2>/dev/null || {
   cd /usr/bin > /dev/null 2>&1

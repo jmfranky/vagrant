@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://git.io/v65Ui
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh
 
 
 hash node 2>/dev/null || {

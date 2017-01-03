@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://git.io/v65Uy
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/phoenix.sh
 
 if ! mix local | grep --quiet "phoenix.new"; then
   cd ~

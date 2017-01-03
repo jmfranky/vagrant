@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://git.io/v65Jb
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/apache.sh
 
 if ! ps ax | grep -v grep | grep httpd > /dev/null; then
   systemctl enable httpd.service > /dev/null 2>&1

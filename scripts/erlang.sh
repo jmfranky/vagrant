@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://git.io/v65Uk
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/erlang.sh
 
 hash erl 2>/dev/null || {
   wget http://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm > /dev/null 2>&1

@@ -19,12 +19,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "app", "/var/www/html", create: true
 
-  config.vm.provision "shell", path: "https://git.io/v65JW", name: "Firewalld"
-  config.vm.provision "shell", path: "https://git.io/v65J0", name: "ImageMagick"
-  config.vm.provision "shell", path: "https://git.io/v65UV", name: "MariaDB"
-  config.vm.provision "shell", path: "https://git.io/v65U9", name: "PHP5.6"
-  #config.vm.provision "shell", path: "https://git.io/vihTb", name: "PHP7"
-  config.vm.provision "shell", path: "https://git.io/v65Jb", name: "Apache"
-  config.vm.provision "shell", path: "https://git.io/v65Uj", name: "RVM", privileged: false
-  config.vm.provision "shell", path: "https://git.io/v65Ui", name: "Node.js", privileged: false
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/firewalld.sh", name: "Firewalld"
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/imagemagick.sh", name: "ImageMagick"
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/mariadb.sh", name: "MariaDB"
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/php.sh", name: "PHP5.6"
+  #config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/php7.sh", name: "PHP7"
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/apache.sh", name: "Apache"
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/rvm.sh", name: "RVM", privileged: false
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh", name: "Node.js", privileged: false
 end
