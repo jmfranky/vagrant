@@ -27,4 +27,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/apache.sh", name: "Apache"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/rvm.sh", name: "RVM", privileged: false
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh", name: "Node.js", privileged: false
+  config.vm.provision "shell", privileged: true, inline: <<-SHELL
+    sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php.ini > /dev/null 2>&1
+    systemctl restart httpd.service > /dev/null 2>&1
+  SHELL
 end
