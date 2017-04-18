@@ -16,7 +16,7 @@ NameVirtualHost *
 EOF
   sed -i "s/User apache/User vagrant/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
   sed -i "s/Group apache/Group vagrant/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
-  sed -i "s/EnableSendfile On/EnableSendfile Off/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
+  sed -i "s/EnableSendfile on/EnableSendfile off/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
   systemctl start httpd.service > /dev/null 2>&1
   ln -s /var/www/html /home/vagrant/app > /dev/null 2>&1
 fi
