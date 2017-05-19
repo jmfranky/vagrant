@@ -1,4 +1,5 @@
 hash python3 2>/dev/null || {
+  yum install gcc
   cd /usr/src
   wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz
   tar xzf Python-3.6.1.tgz
