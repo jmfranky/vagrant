@@ -12,7 +12,7 @@ hash php 2>/dev/null || {
   exit;
 }
 
-yum install php70w-fpm -y > /dev/null 2>&1
+yum install -y php70w-fpm > /dev/null 2>&1
 
 systemctl start php-fpm > /dev/null 2>&1
 systemctl enable php-fpm > /dev/null 2>&1

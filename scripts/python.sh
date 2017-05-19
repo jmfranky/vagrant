@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/pip.sh
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/python.sh
+
+# No need to install python, system includes python 2.7 just need to install pip.
 
 hash pip 2>/dev/null || {
   rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm > /dev/null 2>&1

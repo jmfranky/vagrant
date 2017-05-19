@@ -16,15 +16,15 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
   config.vm.network :forwarded_port, guest: 8000, host: 8000
-  config.vm.network :forwarded_port, guest: 3306, host: 3307
+  config.vm.network :forwarded_port, guest: 5432, host: 55432
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/firewalld.sh", name: "Firewalld"
-  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/mariadb.sh", name: "MariaDB"
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql.sh", name: "PostgreSQL"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/python3.sh", name: "Python"
   #config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/python.sh", name: "Python"
   config.vm.provision "shell", privileged: true, inline: <<-SHELL
-    yum install -y MySQL-python > /dev/null 2>&1
+    pip install psycopg2 > /dev/null 2>&1
   SHELL
 end
