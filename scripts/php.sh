@@ -8,5 +8,5 @@ hash php 2>/dev/null || {
   yum install php56w php56w-opcache -y --skip-broken > /dev/null 2>&1
   yum install yum-plugin-replace -y > /dev/null 2>&1
   yum replace php-common --replace-with=php56w-common -y > /dev/null 2>&1
-  yum install php56w-gd php56w-mysql php56w-mbstring php56w-intl -y > /dev/null 2>&1
+  yum install php56w-gd php56w-mysql php56w-mbstring php56w-intl php56w-xml -y > /dev/null 2>&1
 }
