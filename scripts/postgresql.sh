@@ -13,7 +13,7 @@ hash psql 2>/dev/null || {
   sudo -u postgres psql 2>/dev/null -c "alter user postgres with password 'vagrant'" > /dev/null 2>&1
   sudo -u postgres createuser -s vagrant > /dev/null 2>&1
   echo "host all all 0.0.0.0/0 trust" >> /var/lib/pgsql/9.5/data/pg_hba.conf
-  echo "local all all md5" >> /var/lib/pgsql/9.5/data/pg_hba.conf
+  sed -i "s/peer/md5/g" /var/lib/pgsql/9.5/data/pg_hba.conf > /dev/null 2>&1
   echo "listen_addresses = '*'" >> /var/lib/pgsql/9.5/data/postgresql.conf
   systemctl restart postgresql-9.5 > /dev/null 2>&1
 }
