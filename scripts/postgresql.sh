@@ -4,7 +4,7 @@
 
 hash psql 2>/dev/null || {
   rpm -ivh http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm > /dev/null 2>&1
-  yum install -y postgresql95 postgresql95-server postgresql95-libs postgresql95-contrib postgresql95-devel postgresql95-devel > /dev/null 2>&1
+  yum install -y postgresql95 postgresql95-server postgresql95-libs postgresql95-contrib postgresql95-devel postgresql95-devel postgresql-devel > /dev/null 2>&1
   rm -rf /var/lib/pgsql/9.5/data > /dev/null 2>&1
   /usr/pgsql-9.5/bin/postgresql95-setup initdb > /dev/null 2>&1
   systemctl start postgresql-9.5 > /dev/null 2>&1
