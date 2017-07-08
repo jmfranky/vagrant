@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql.sh
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql-ruby.sh
 
 hash psql 2>/dev/null || {
   rpm -ivh http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm > /dev/null 2>&1
