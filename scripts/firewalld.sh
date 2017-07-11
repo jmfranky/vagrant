@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/firewalld.sh
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/default.sh
 
 systemctl mask firewalld > /dev/null 2>&1
 systemctl stop firewalld > /dev/null 2>&1
+
+hash git 2>/dev/null || {
+  yum install -y git > /dev/null 2>&1
+}
