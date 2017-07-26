@@ -10,11 +10,11 @@ hash git 2>/dev/null || {
 }
 
 hash chronyd 2>/dev/null || {
-  yum install -y chrony
-  systemctl enable chronyd
-  systemctl start chronyd
+  yum install -y chrony > /dev/null 2>&1
+  systemctl enable chronyd > /dev/null 2>&1
+  systemctl start chronyd > /dev/null 2>&1
 }
 
 hash vim 2>/dev/null || {
-  yum install -y vim
+  yum install -y vim > /dev/null 2>&1
 }
