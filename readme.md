@@ -31,3 +31,5 @@ curl -sL https://git.io/vPK0g | bash
 ===
 
 For more help see [Vagrant Documentation](https://docs.vagrantup.com/v2/)
+
+*current builds confirmed working with Vagrant 2*
