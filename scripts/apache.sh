@@ -10,7 +10,7 @@ NameVirtualHost *
   DocumentRoot /var/www/html
   <Directory "/var/www/html">
     Options FollowSymLinks
-    AllowOverride ALL
+    AllowOverride All
   </Directory>
 </VirtualHost>
 EOF
