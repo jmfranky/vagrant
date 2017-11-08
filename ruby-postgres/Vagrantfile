@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/rvm.sh", name: "RVM", privileged: false
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh", name: "Node.js", privileged: false
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    hash peak 2>/dev/null || {
-      gem install pg -- --with-pg-config=/usr/pgsql-10/bin/pg_config  > /dev/null 2>&1
-    }
+    if ! gem spec pg > /dev/null 2>&1; then
+      gem install pg -- --with-pg-config=/usr/pgsql-10/bin/pg_config > /dev/null 2>&1
+    fi
   SHELL
 end
