@@ -15,5 +15,4 @@ hash psql 2>/dev/null || {
   echo "host all all 0.0.0.0/0 trust" >> /var/lib/pgsql/10/data/pg_hba.conf
   echo "listen_addresses = '*'" >> /var/lib/pgsql/10/data/postgresql.conf
   systemctl restart postgresql-10 > /dev/null 2>&1
-  gem install pg -- --with-pg-config=/usr/pgsql-10/bin/pg_config
 }
