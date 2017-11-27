@@ -10,7 +10,7 @@ hash psql 2>/dev/null || {
   systemctl start postgresql-10 > /dev/null 2>&1
   systemctl enable postgresql-10 > /dev/null 2>&1
   chkconfig postgresql-10 on > /dev/null 2>&1
-  sudo -u postgres psql 2>/dev/null -c "alter user postgres with password 'postgres'" > /dev/null 2>&1
+  sudo -u postgres psql 2>/dev/null -c "alter user postgres with password 'vagrant'" > /dev/null 2>&1
   sudo -u postgres createuser -s vagrant > /dev/null 2>&1
   echo "host all all 0.0.0.0/0 trust" >> /var/lib/pgsql/10/data/pg_hba.conf
   echo "listen_addresses = '*'" >> /var/lib/pgsql/10/data/postgresql.conf
