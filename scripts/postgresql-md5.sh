@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql-python.sh
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql-md5.sh
 
 hash psql 2>/dev/null || {
   rpm -Uvh https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-1.noarch.rpm > /dev/null 2>&1
