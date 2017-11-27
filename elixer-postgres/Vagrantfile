@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 5432, host: 55432
 
   config.vm.synced_folder "app", "/home/vagrant/app", create: true
+
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/default.sh", name: "Default"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql.sh", name: "PostgreSQL"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/erlang.sh", name: "Erlang"
