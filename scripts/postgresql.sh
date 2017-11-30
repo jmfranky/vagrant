@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql-md5.sh
+# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/postgresql.sh
 
 hash psql 2>/dev/null || {
   rpm -Uvh https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-1.noarch.rpm > /dev/null 2>&1
@@ -16,5 +16,6 @@ hash psql 2>/dev/null || {
   sed -i "s/peer/md5/g" /var/lib/pgsql/10/data/pg_hba.conf > /dev/null 2>&1
   sed -i "s/ident/md5/g" /var/lib/pgsql/10/data/pg_hba.conf > /dev/null 2>&1
   echo "listen_addresses = '*'" >> /var/lib/pgsql/10/data/postgresql.conf
+  ln -s /usr/pgsql-10/bin/p* /usr/local/bin
   systemctl restart postgresql-10 > /dev/null 2>&1
 }
