@@ -10,4 +10,4 @@ hash node 2>/dev/null || {
   nvm install $version
   nvm use $version
   nvm alias default $version
-} 2>&1 >/dev/null
+} > /dev/null 2>&1
