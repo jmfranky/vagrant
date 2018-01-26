@@ -11,8 +11,8 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc
 EOF
-  yum install -y mongodb-org > /dev/null 2>&1
-  chkconfig mongod on > /dev/null 2>&1
+  yum install -y mongodb-org
+  chkconfig mongod on
   if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
      echo never > /sys/kernel/mm/transparent_hugepage/enabled
   fi
@@ -20,5 +20,5 @@ EOF
      echo never > /sys/kernel/mm/transparent_hugepage/defrag
   fi
   echo 'mongod     soft    nproc     64000' > /etc/security/limits.d/90-nproc.conf
-  service mongod start > /dev/null 2>&1
-}
+  service mongod start
+} 2>&1 >/dev/null

@@ -1,12 +1,12 @@
 #!/bin/bash
 
 hash dialog 2>/dev/null || {
-  brew install dialog > /dev/null 2>&1
-}
+  brew install dialog
+} 2>&1 >/dev/null
 
 hash wget 2>/dev/null || {
-  brew install wget > /dev/null 2>&1
-}
+  brew install wget
+} 2>&1 >/dev/null
 
 
 scripts=("https://raw.githubusercontent.com/Mullen/vagrant/master/docker/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/elixer-postgres/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/lamp/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/lemp/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/node-mongodb/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/python/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/ruby-mariadb/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/ruby-postgres/Vagrantfile" )
