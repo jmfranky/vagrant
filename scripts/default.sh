@@ -7,8 +7,8 @@ systemctl stop firewalld > /dev/null 2>&1
 
 hash git 2>/dev/null || {
   yum install -y git
-} 2>&1 >/dev/null
+} > /dev/null 2>&1
 
 hash vim 2>/dev/null || {
   yum install -y vim
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

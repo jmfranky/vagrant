@@ -9,4 +9,4 @@ hash docker 2>/dev/null || {
   yum install -y docker-ce
   systemctl enable docker
   systemctl start docker
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

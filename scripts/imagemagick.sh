@@ -4,4 +4,4 @@
 
 hash convert 2>/dev/null || {
   yum install -y ImageMagick-devel ImageMagick
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

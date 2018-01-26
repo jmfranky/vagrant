@@ -18,4 +18,4 @@ hash psql 2>/dev/null || {
   echo "listen_addresses = '*'" >> /var/lib/pgsql/10/data/postgresql.conf
   ln -s /usr/pgsql-10/bin/p* /usr/local/bin
   systemctl restart postgresql-10
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

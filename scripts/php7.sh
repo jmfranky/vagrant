@@ -9,4 +9,4 @@ hash php 2>/dev/null || {
   yum install -y yum-plugin-replace
   yum replace -y php-common --replace-with=php70w-common
   yum install -y php70u-gd php70w-mysql php70w-mbstring php70w-intl
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

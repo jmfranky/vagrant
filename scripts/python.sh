@@ -10,4 +10,4 @@ hash pip 2>/dev/null || {
   yum install -y python-pip libpng-devel git mysql gcc-c++ mailcap automake python-devel libpng-devel libcurl-devel libxml2-devel openssl-devel libstdc++-devel
   pip install --upgrade pip
   pip install virtualenv
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

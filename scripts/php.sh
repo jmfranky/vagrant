@@ -11,4 +11,4 @@ hash php 2>/dev/null || {
   yum install -y php56w-gd php56w-mysql php56w-mbstring php56w-intl php56w-xml
   sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php.ini
   systemctl restart httpd.service
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

@@ -21,4 +21,4 @@ EOF
   fi
   echo 'mongod     soft    nproc     64000' > /etc/security/limits.d/90-nproc.conf
   service mongod start
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

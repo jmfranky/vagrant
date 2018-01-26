@@ -10,4 +10,4 @@ hash iex 2>/dev/null || {
   unzip Precompiled.zip
   echo 'export PATH="$PATH:/usr/bin/elixir/bin"' > /etc/profile
   source /etc/profile
-} 2>&1 >/dev/null
+} > /dev/null 2>&1

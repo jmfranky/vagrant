@@ -8,4 +8,4 @@ hash redis-cli 2>/dev/null || {
   yum install -y redis
   systemctl enable redis.service
   systemctl start redis.service
-} 2>&1 >/dev/null
+} > /dev/null 2>&1
