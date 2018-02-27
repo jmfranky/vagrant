@@ -20,5 +20,5 @@ EOF
     sed -i "s/EnableSendfile on/EnableSendfile off/g" /etc/httpd/conf/httpd.conf
     systemctl start httpd.service
     ln -s /var/www/html /home/vagrant/app
-  } > /dev/null 2>&1
+  }
 fi
