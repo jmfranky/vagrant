@@ -9,4 +9,8 @@ hash php 2>/dev/null || {
   yum install -y yum-plugin-replace
   yum replace -y php-common --replace-with=php70w-common
   yum install -y php70u-gd php70w-mysql php70w-mbstring php70w-intl
+  cd /tmp
+  curl -sS https://getcomposer.org/installer | php
+  chmod +x composer.phar
+  mv composer.phar /usr/local/bin/composer
 } > /dev/null 2>&1
