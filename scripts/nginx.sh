@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/nginx.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/nginx.sh
 
 hash nginx 2>/dev/null || {
   yum install -y epel-release

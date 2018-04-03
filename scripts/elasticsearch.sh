@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/elasticsearch.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/elasticsearch.sh
 
 curl -s "http://localhost:9200" 2>&1 > /dev/null
 if [ $? != 0 ]; then

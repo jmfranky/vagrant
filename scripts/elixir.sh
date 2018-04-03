@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/elixir.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/elixir.sh
 
 hash iex 2>/dev/null || {
   mkdir /usr/bin/elixir

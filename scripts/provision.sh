@@ -9,7 +9,7 @@ hash wget 2>/dev/null || {
 } > /dev/null 2>&1
 
 
-scripts=("https://raw.githubusercontent.com/Mullen/vagrant/master/docker/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/elixer-postgres/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/lamp/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/lemp/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/node-mongodb/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/python/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/ruby-mariadb/Vagrantfile" "https://raw.githubusercontent.com/Mullen/vagrant/master/ruby-postgres/Vagrantfile" )
+scripts=("https://raw.githubusercontent.com/stfnhh/vagrant/master/docker/Vagrantfile" "https://raw.githubusercontent.com/stfnhh/vagrant/master/elixer-postgres/Vagrantfile" "https://raw.githubusercontent.com/stfnhh/vagrant/master/lamp/Vagrantfile" "https://raw.githubusercontent.com/stfnhh/vagrant/master/lemp/Vagrantfile" "https://raw.githubusercontent.com/stfnhh/vagrant/master/node-mongodb/Vagrantfile" "https://raw.githubusercontent.com/stfnhh/vagrant/master/python/Vagrantfile" "https://raw.githubusercontent.com/stfnhh/vagrant/master/ruby-mariadb/Vagrantfile" "https://raw.githubusercontent.com/stfnhh/vagrant/master/ruby-postgres/Vagrantfile" )
 
 dialog --clear --title " Vagrant Provisioner " --menu "Choose one of the following builds:" 20 60 10 \
 1 "Docker" \

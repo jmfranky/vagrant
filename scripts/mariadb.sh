@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/mariadb.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/mariadb.sh
 
 hash mysql 2>/dev/null || {
   yum install -y httpd mariadb-server mariadb mysql-devel

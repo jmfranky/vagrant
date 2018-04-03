@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/phoenix.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/phoenix.sh
 
 if ! mix local | grep --quiet "phoenix.new"; then
   {

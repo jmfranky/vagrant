@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/python3.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/python3.sh
 
 # No need to install python, system includes python 2.7 just need to install pip.
 

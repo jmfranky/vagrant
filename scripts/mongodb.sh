@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/mongodb.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/mongodb.sh
 
 hash mongo 2>/dev/null || {
   cat > /etc/yum.repos.d/mongodb-org-3.2.repo <<EOF

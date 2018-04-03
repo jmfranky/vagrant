@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/node.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/node.sh
 
 hash node 2>/dev/null || {
   curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash

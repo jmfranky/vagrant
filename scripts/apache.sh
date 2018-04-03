@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/apache.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/apache.sh
 
 
 if ! ps ax | grep -v grep | grep httpd > /dev/null; then

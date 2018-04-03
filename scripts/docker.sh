@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/docker.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/docker.sh
 
 hash docker 2>/dev/null || {
   yum install -y yum-utils device-mapper-persistent-data lvm2

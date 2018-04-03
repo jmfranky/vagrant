@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/php.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/php.sh
 
 hash php 2>/dev/null || {
   rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 

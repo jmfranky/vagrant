@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/crystal.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/crystal.sh
 
 hash crystal 2>/dev/null || {
   curl https://dist.crystal-lang.org/rpm/setup.sh | bash

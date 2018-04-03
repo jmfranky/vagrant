@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/Mullen/vagrant/master/scripts/ffmpeg.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/ffmpeg.sh
 
 hash ffmpeg 2>/dev/null || {
   yum -y install epel-release
