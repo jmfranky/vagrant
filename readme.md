@@ -18,7 +18,7 @@ Now install Vagrant either [from the website](http://www.vagrantup.com/download
 $ brew cask install vagrant
 ```
 
--
+---
 
 For more help see [Vagrant Documentation](https://docs.vagrantup.com/v2/)
 
