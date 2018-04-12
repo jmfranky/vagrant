@@ -18,17 +18,7 @@ Now install Vagrant either [from the website](http://www.vagrantup.com/download
 $ brew cask install vagrant
 ```
 
-
-
-## Usage
-
-Run the Vagrant provisioning script.
-
-```shell
-curl -sL https://git.io/vPK0g | bash
-```
-
-===
+-
 
 For more help see [Vagrant Documentation](https://docs.vagrantup.com/v2/)
 
