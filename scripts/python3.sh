@@ -2,8 +2,6 @@
 
 # https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/python3.sh
 
-# No need to install python, system includes python 2.7 just need to install pip.
-
 hash python3.6 2>/dev/null || {
   yum -y install https://centos7.iuscommunity.org/ius-release.rpm
   yum -y install python36u 
