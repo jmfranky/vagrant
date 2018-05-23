@@ -19,3 +19,8 @@ hash ntpdate 2>/dev/null || {
   ntpdate pool.ntp.org
   service ntpd start
 } > /dev/null 2>&1
+
+hash require 2>/dev/null || {
+  wget -O /usr/local/bin/require https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/require.sh
+  chmod +x /usr/local/bin/require
+}

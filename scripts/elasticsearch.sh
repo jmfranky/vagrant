@@ -4,7 +4,6 @@
 
 curl -s "http://localhost:9200" 2>&1 > /dev/null
 if [ $? != 0 ]; then
-  yum install java-1.8.0-openjdk.x86_64 -y
   cd /tmp
   wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.3.rpm
   rpm --install elasticsearch-6.2.3.rpm
