@@ -4,6 +4,7 @@
 
 if ! mix local | grep --quiet "phoenix.new"; then
   {
+    sudo require elixir
     cd ~
     yes | mix local.hex
     yes | mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
