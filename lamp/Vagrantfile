@@ -26,5 +26,5 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/php7.sh", name: "PHP7"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/apache.sh", name: "Apache"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/ruby.sh", name: "Ruby", privileged: false
-  config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/node.sh", name: "Node.js", privileged: false
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/nodejs.sh", name: "Node.js", privileged: false
 end

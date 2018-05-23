@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/imagemagick.sh", name: "ImageMagick"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/postgresql.sh", name: "PostgreSQL"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/ruby.sh", name: "Ruby", privileged: false
-  config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/node.sh", name: "Node.js", privileged: false
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/nodejs.sh", name: "Node.js", privileged: false
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     hash yarn 2>/dev/null || {
       npm install yarn -g > /dev/null 2>&1

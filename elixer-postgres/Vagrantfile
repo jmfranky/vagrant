@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/erlang.sh", name: "Erlang"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/elixir.sh", name: "Elixir"
   config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/phoenix.sh", name: "Phoenix", privileged: false
-  config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/node.sh", name: "Node.js", privileged: false
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/nodejs.sh", name: "Node.js", privileged: false
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     /sbin/ifconfig enp0s8 | grep 'inet ' | cut -d: -f2 | awk '{print "IP ADDRESSS: " $2}'
   SHELL

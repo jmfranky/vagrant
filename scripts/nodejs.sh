@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/node.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/nodejs.sh
 
 hash node 2>/dev/null || {
   require nvm
