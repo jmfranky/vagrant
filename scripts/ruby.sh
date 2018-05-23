@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/rvm.sh
+# https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/ruby.sh
 
 hash rvm 2>/dev/null || {
   curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -

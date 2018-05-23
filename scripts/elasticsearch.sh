@@ -4,6 +4,7 @@
 
 curl -s "http://localhost:9200" 2>&1 > /dev/null
 if [ $? != 0 ]; then
+  require jdk
   cd /tmp
   wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.3.rpm
   rpm --install elasticsearch-6.2.3.rpm

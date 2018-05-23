@@ -3,6 +3,7 @@
 # https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/elixir.sh
 
 hash iex 2>/dev/null || {
+  require erlang
   mkdir /usr/bin/elixir
   cd /usr/bin/elixir
   wget https://github.com/elixir-lang/elixir/releases/download/v1.5.0/Precompiled.zip

@@ -14,13 +14,13 @@ hash vim 2>/dev/null || {
 } > /dev/null 2>&1
 
 hash ntpdate 2>/dev/null || {
-  yum install ntp ntpdate ntp-doc -y
+  yum install -y ntp ntpdate ntp-doc
   chkconfig ntpd on
   ntpdate pool.ntp.org
   service ntpd start
 } > /dev/null 2>&1
 
 hash require 2>/dev/null || {
-  wget -O /usr/local/bin/require https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/require.sh
-  chmod +x /usr/local/bin/require
+  curl --fail --silent --show-error https://raw.githubusercontent.com/stfnhh/vagrant/master/scripts/require.sh --output /usr/bin/require
+  chmod +x /usr/bin/require
 }
