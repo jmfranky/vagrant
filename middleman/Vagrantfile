@@ -1,0 +1,35 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'bento/centos-7.4'
+  config.ssh.insert_key = false
+
+  scripts = 'https://raw.githubusercontent.com/stfnhh/vagrant-provisioning-scripts/master/centos/'
+
+  config.vm.provider :virtualbox do |vm|
+    vm.customize ['modifyvm', :id, '--memory', 1536]
+    vm.customize ['modifyvm', :id, '--cpus', '2']
+    vm.customize ['modifyvm', :id, '--ioapic', 'on']
+    vm.customize ['modifyvm', :id, '--nictype1', 'virtio']
+    vm.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    vm.customize ['guestproperty', 'set', :id, '--timesync-threshold', 5000]
+  end
+
+  config.vm.network :forwarded_port, guest: 4567, host: 4567
+
+  config.vm.synced_folder 'app', '/home/vagrant/app', create: true
+
+  config.vm.provision 'shell', path: "#{scripts}default", name: 'Default'
+  config.vm.provision 'shell', path: "#{scripts}imagemagick", name: 'ImageMagick'
+  config.vm.provision 'shell', path: "#{scripts}ruby", name: 'Ruby', privileged: false
+  config.vm.provision 'shell', path: "#{scripts}nodejs", name: 'Node.js', privileged: false
+  config.vm.provision 'shell', privileged: false, inline: <<-SHELL
+    hash yarn 2>/dev/null || {
+      npm install yarn -g > /dev/null 2>&1
+    }
+    hash middleman 2>/dev/null || {
+      gem install middleman > /dev/null 2>&1
+    }
+  SHELL
+end
