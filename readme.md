@@ -22,7 +22,9 @@ $ brew cask install vagrant
 
 ## Configure
 
-Besides the configurations listed above there are also many other install scripts available here: [https://github.com/stfnhh/vagrant-provisioning-scripts](https://github.com/stfnhh/vagrant-provisioning-scripts)
+Besides the packages listed in the configurations above there are also many others available here: [https://github.com/stfnhh/vagrant-provisioning-scripts](https://github.com/stfnhh/vagrant-provisioning-scripts)
+
+---
 
 For more help see [Vagrant Documentation](https://docs.vagrantup.com/v2/)
 
