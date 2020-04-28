@@ -20,5 +20,5 @@ Vagrant.configure("2") do |config|
 
   repo = "https://raw.githubusercontent.com/stfnhh/vagrant-provisioning-scripts/master/centos"
   config.vm.provision "shell", path: "#{repo}/initialization", name: "Initialization"
-  config.vm.provision "shell", path: "#{repo}crystal", name: "Crystal"
+  config.vm.provision "shell", path: "#{repo}/crystal", name: "Crystal"
 end
