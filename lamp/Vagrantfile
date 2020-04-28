@@ -1,30 +1,29 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure('2') do |config|
-  config.vm.box = 'bento/centos-7.6'
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7.6"
   config.ssh.insert_key = false
 
   config.vm.provider :virtualbox do |vm|
-    vm.customize ['modifyvm', :id, '--memory', 1536]
-    vm.customize ['modifyvm', :id, '--cpus', '2']
-    vm.customize ['modifyvm', :id, '--ioapic', 'on']
-    vm.customize ['modifyvm', :id, '--natdnsproxy1', 'off']
-    vm.customize ['modifyvm', :id, '--natdnshostresolver1', 'off']
-    vm.customize ['guestproperty', 'set', :id, '/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold', 10000 ]
+    vm.customize ["modifyvm", :id, "--memory", 1536]
+    vm.customize ["modifyvm", :id, "--cpus", "2"]
+    vm.customize ["modifyvm", :id, "--ioapic", "on"]
+    vm.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+    vm.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+    vm.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
   end
 
-  config.vm.synced_folder 'app', '/home/vagrant/app', create: true
+  config.vm.synced_folder "app", "/home/vagrant/app", create: true
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
   config.vm.network :forwarded_port, guest: 3306, host: 3306
 
-  repo = 'https://raw.githubusercontent.com/stfnhh/vagrant-provisioning-scripts/master/centos'
-  config.vm.provision 'shell', path: "#{repo}/initialization", name: 'Initialization'
-  config.vm.provision 'shell', path: "#{repo}/imagemagick", name: 'ImageMagick'
-  config.vm.provision 'shell', path: "#{repo}/mariadb", name: 'MariaDB'
-  config.vm.provision 'shell', path: "#{repo}/php7", name: 'PHP7'
-  config.vm.provision 'shell', path: "#{repo}/apache", name: 'Apache'
-  config.vm.provision 'shell', path: "#{repo}/ruby", name: 'Ruby', privileged: false
-  config.vm.provision 'shell', path: "#{repo}/nodejs", name: 'Node.js', privileged: false
+  repo = "https://raw.githubusercontent.com/stfnhh/vagrant-provisioning-scripts/master/centos"
+  config.vm.provision "shell", path: "#{repo}/initialization", name: "Initialization"
+  config.vm.provision "shell", path: "#{repo}/mariadb", name: "MariaDB"
+  config.vm.provision "shell", path: "#{repo}/php7", name: "PHP7"
+  config.vm.provision "shell", path: "#{repo}/apache", name: "Apache"
+  config.vm.provision "shell", path: "#{repo}/ruby", name: "Ruby", privileged: false
+  config.vm.provision "shell", path: "#{repo}/nodejs", name: "Node.js", privileged: false
 end
